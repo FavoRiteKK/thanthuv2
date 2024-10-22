@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/gg_permission_return"
+            android:layout_width="@dimen/gg_fourty_dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gg_ui_iv_return"
+            android:contentDescription="@null"/>
+        <TextView
+            android:textSize="19sp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gg_permission_settings"/>
+    </FrameLayout>
+    <TextView
+        android:textSize="@dimen/gg_twelve_sp"
+        android:textColor="@color/gg_color_home_text_gray"
+        android:paddingTop="@dimen/gg_eight_dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gg_fifty_four_dp"
+        android:text="@string/gg_user_permission_description"/>
+</LinearLayout>

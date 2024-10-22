@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:textSize="@dimen/gg_fourteen_sp"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:id="@+id/gg_permission_name"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/gg_seventy_five_dp"
+        android:layout_weight="4"/>
+    <TextView
+        android:textSize="@dimen/gg_twelve_sp"
+        android:textColor="@color/gg_blue"
+        android:gravity="center_vertical"
+        android:id="@+id/gg_permission_setting"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/gg_seventy_five_dp"
+        android:text="@string/gg_permission_settings"
+        android:layout_weight="1"/>
+</LinearLayout>

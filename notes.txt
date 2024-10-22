@@ -1,0 +1,138 @@
+Today ip: 192.168.1.10
+    ssh -l ubuntu -p 22 192.168.1.10 (password: q1)
+
+sudo su password: q1
+quick file: /root/changeIp.sh
+
+aaPanel default info!
+    bt 14
+
+aaPanel default info!
+==================================================================
+aaPanel Internet Address: http://123.25.38.47:35231/2f1e0979
+aaPanel Internal Address: http://10.10.1.186:35231/2f1e0979
+username: auc22vhc
+password: 23188875
+
+check game server status:
+    supervisorctl status
+	
+resign apk:
+	java -jar ..\ApkStudio-5.2.4-x64\tools\uber-apk-signer-1.3.0.jar --apks .\ThanThu-aligned-debugSigned.apk-decompiled\dist\ThanThu-aligned-debugSigned.apk
+
+How to make a Release Android App debuggable
+	https://gist.github.com/nstarke/615ca3603fdded8aee47fab6f4917826
+===========================================================
+frida
+
+start: frida -U Gadget
+trace: frida-trace -U -i _ZN10cocostudio9GUIReader18widgetFromJsonFileEPKc Gadget
+	frida-trace -U -i "*FileUtils*" -i "AAsset_read" -i "AAsset_getLength" -i "*ResizableBufferAdapter*" -i "lua_cocos2dx_ui_Widget_clone__Formidable" -i "lua_cocos2dx_ui_RichText_isAnchorTextDelEnabled__Profit" -i "LZ4_decompress_safe" -i "_Z16tj_xxtea_decryptPhjS_jPj" Gadget
+
+===========================================================
+cocos
+	
+luajit 64bit version run errors; maybe it requires Visual Studio runtime?
+local fullpath = fileUtils:fullPathForFilename(imageFilename)
+
+cocos new MyLuaGame -p com.tianji.MyLuaGame -l lua -d .
+cocos compile -s .\MyLuaGame\ -p android -o .\MyLuaGame\bin --ap android-29 --app-abi armeabi-v7a --android-studio
+cocos compile -s . -p android -o .\bin -j 8 --ap android-29 --app-abi arm64-v8a --no-res -m release
+cocos run -s C:\LamGame\MyLuaGame\ -p android --android-studio
+
+# C:\My my lua game ver 3.17
+getStringFromFile can be seen fully in tianji_dug.log file in external storage.
+dcrypted content in json file can be copied to mapped file, then run ok
+=> it seems it check if the file has "tj***" at the beginning to decide to decode or not.
+
+loadFileMappingFromFile
+regex
+	c.a.a.a.l[^.;\n]
+	
+	Unreachable blocks removed: 1, instructions: 1
+	
+	local _aes = require 'aes'
+local AESKeyHex = _aes.key128Hex
+
+local InitPwdAES = 'tjshuma081610888'
+local InitPwdHexAES = AESKeyHex(InitPwdAES)
+	
+=================================
+
+usage: cocos compile [-h] [-s SRC_DIR] [-q] [-p PLATFORM] [--list-platforms]
+                     [--proj-dir PROJ_DIR] [-m MODE] [-j JOBS] [-o OUTPUT_DIR]
+                     [--ap ANDROID_PLATFORM] [--build-type BUILD_TYPE]
+                     [--app-abi APP_ABI] [--ndk-toolchain TOOLCHAIN]
+                     [--ndk-cppflags CPPFLAGS] [--no-apk] [--no-sign]
+                     [--vs VS_VERSION] [--source-map] [--advanced]
+                     [-t TARGET_NAME] [--sign-identity SIGN_ID] [--no-res]
+                     [--compile-script {0,1}] [--lua-encrypt]
+                     [--lua-encrypt-key LUA_ENCRYPT_KEY]
+                     [--lua-encrypt-sign LUA_ENCRYPT_SIGN]
+
+Compile projects to binary.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s SRC_DIR, --src SRC_DIR
+                        Specify the path of the project.
+  -q, --quiet           Less output
+  -p PLATFORM, --platform PLATFORM
+                        Specify the target platform.
+  --list-platforms      List available platforms
+  --proj-dir PROJ_DIR   Specify the directory for target platform.
+  -m MODE, --mode MODE  Set the compiling mode, should be debug|release,
+                        default is debug.
+  -j JOBS, --jobs JOBS  Allow N jobs at once.
+  -o OUTPUT_DIR, --output-dir OUTPUT_DIR
+                        Specify the output directory.
+
+Android Options:
+  --ap ANDROID_PLATFORM
+                        Specify the Android platform used for building Android
+                        apk.
+  --build-type BUILD_TYPE
+                        Set the compiling type of native code, should be ndk-
+                        build|none, default is ndk-build. Native code will not
+                        be compiled when the value is none.
+  --app-abi APP_ABI     Set the APP_ABI of ndk-build.Can be multi value
+                        separated with ':'. Sample : --app-abi armeabi-
+                        v7a:x86. Default value is 'armeabi-v7a'.
+  --ndk-toolchain TOOLCHAIN
+                        Specify the NDK_TOOLCHAIN of ndk-build.
+  --ndk-cppflags CPPFLAGS
+                        Specify the APP_CPPFLAGS of ndk-build.
+  --no-apk              Not generate the apk file.
+  --no-sign             Generate unsigned apk even when release mode.
+
+Windows Options:
+  --vs VS_VERSION       Specify the Visual Studio version will be used. Such
+                        as: 2015. Default find available version
+                        automatically.
+
+Web Options:
+  --source-map          Enable source-map
+  --advanced            Compile all source js files using Closure Compiler's
+                        advanced mode, bigger compression ratio bug more risk.
+
+iOS/Mac Options:
+  -t TARGET_NAME, --target TARGET_NAME
+                        Specify the target name to be compiled.
+
+iOS Options:
+  --sign-identity SIGN_ID
+                        The code sign identity for iOS.
+
+lua/js project Options:
+  --no-res              Package without project resources.
+  --compile-script {0,1}
+                        Diable/Enable the compiling of lua/js script files.
+
+lua project Options:
+  --lua-encrypt         Enable the encrypting of lua scripts.
+  --lua-encrypt-key LUA_ENCRYPT_KEY
+                        Specify the encrypt key for the encrypting of lua
+                        scripts.
+  --lua-encrypt-sign LUA_ENCRYPT_SIGN
+                        Specify the encrypt sign for the encrypting of lua
+                        scripts.

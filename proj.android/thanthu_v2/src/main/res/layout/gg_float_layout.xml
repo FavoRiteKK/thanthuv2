@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/gg_fl_float"
+    android:layout_width="55dp"
+    android:layout_height="55dp">
+    <FrameLayout
+        android:id="@+id/gg_float_window"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/gg_iv_float"
+            android:background="@drawable/gg_icon_float"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:contentDescription="@null"/>
+        <TextView
+            android:textSize="@dimen/gg_eleven_sp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="right"
+            android:id="@+id/gg_tv_num_text"
+            android:background="@drawable/gg_badge_background"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+</LinearLayout>

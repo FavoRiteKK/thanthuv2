@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TivicloudSDK>
+    <RunConfig
+        appId="10054"
+        appKey="fff18b83431fa3a83b9de80c1e413bde"
+        appName="口袋觉醒"
+        channelId="10004"
+        platformId= "0"
+        checkVersion="false"
+        debug="true"
+        extraSDK=""
+        screenOrientation="landscape"
+        language="zh"
+        hostAddress="123.com"
+		openPermission="flase"
+	/>
+	<Permissions
+		READ_PHONE_STATE="允许游戏读取手机状态"
+		PUSH="允许游戏推送通知消息"/>
+</TivicloudSDK>
+

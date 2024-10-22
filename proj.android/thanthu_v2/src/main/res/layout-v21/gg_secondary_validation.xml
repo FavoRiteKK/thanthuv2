@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ProgressBar
+        android:layout_gravity="center"
+        android:id="@+id/gg_secondary_validation_loading"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/gg_dark_grey"/>
+    <WebView
+        android:id="@+id/gg_wb_secondary_validation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</FrameLayout>

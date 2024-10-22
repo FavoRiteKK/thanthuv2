@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:background="@drawable/gg_icon_float_background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <TextView
+        android:textSize="@dimen/gg_ten_sp"
+        android:textColor="@color/gg_white"
+        android:id="@+id/gg_tx_float_user_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="@string/gg_float_popup_item_user_center"
+        android:drawableTop="@drawable/gg_icon_float_usercenter"/>
+    <TextView
+        android:textSize="@dimen/gg_ten_sp"
+        android:textColor="@color/gg_white"
+        android:id="@+id/gg_tx_float_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gg_float_popup_item_cancel_account"
+        android:drawableTop="@drawable/gg_icon_float_logout"/>
+</LinearLayout>

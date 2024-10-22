@@ -1,0 +1,326 @@
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+The tutorials and resources on this site are all conducted in a stand-alone environment and are only for stand-alone research and learning. Please delete them within 24 hours after downloading, or purchase the genuine version.
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+Pocket Awakening Linux Setup Tutorial
+
+Tutorial Demonstration Virtual Machine Address: 192.168.200.128 The external network is similar to the local area network
+
+# (If it is not a Tencent Cloud server) After the operating system is installed, change the apt source and pip source to the Tencent source
+
+In fact, you don’t need to change it, but the installation is a bit slow, so it’s better to change it
+
+If you don’t know how to change the source, you can download the lazy tool from the website to change
+
+Set up the environment:
+
+ubuntu server 18.04
+
+This is not demonstrated separately, refer to the previous "Pagoda Installation General Video".
+
+0. Preparation (if there is an SSH service, it can be ignored)
+
+	It should be noted here that this resource uses ubuntu system and centos. It is similar
+
+	# This system uses a normal account to log in by default, and you need to switch to root for installation
+	Generally, the new system needs to manually set the root
+
+	Use the SSH tool to log in to the normal account
+
+	Command line input
+
+	sudo passwd root
+
+	90175.com (your password)
+
+	90175.com (root password)
+
+	90175.com (confirm password)
+
+	Confirm the password three times
+
+	After setting
+
+	su
+	Enter your root password and enter root
+
+	PS: $ is normal permission # is administrator permission (some usernames are: ubuntu)
+
+	# Install and enable SSH service
+
+	sudo apt install vim Press y to enter
+
+	sudo apt-get install openssh-server Press y to enter
+
+	sudo vim /etc/ssh/sshd_config Press i to enter edit mode Keyboard arrow keys control cursor
+	Modify #PermitRootLogin prohibit-password to PermitRootLogin yes Note to delete the pound sign in front
+	After modification, press esc on the keyboard and enter: wq and enter
+
+	sudo service sshd restart
+
+----------------------------------------------------------------------------------
+
+Begin below
+
+Make sure we are in administrator mode ($ is normal permission # is administrator privileges)
+
+1. Upload the server kdjx.tar.gz to the server /home/ubuntu folder! ! (Use WinSCP or other tools to upload data, or directly upload to Baota!!)
+
+	If you don’t have ubuntu, create one yourself
+	Unzip
+	cd /home/ubuntu
+	tar -zxvf kdjx.tar.gz
+	rm kdjx.tar.gz
+	
+	
+2. Environment configuration (copy and execute the command line by line)
+
+	Installation environment:
+		apt-get install expect subversion build-essential lib32stdc++6 gcc-multilib g++-multilib python-dev pypy-dev gdb python2.7-dbg libcurl4-openssl-dev graphviz openssl libssl-dev swig gawk iotop lsof iftop ifstat iptraf htop dstat iotop ltrace strace sysstat bmon nethogs silversearcher-ag libsasl2-2 sasl2-bin libsasl2-modules python-setuptools luajit curl wget unzip python-pip
+
+		apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+
+		echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.6 main" | tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+
+	Install bt/aapanel:
+
+		#wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh && sudo bash install.sh
+		URL=https://www.aapanel.com/script/install_7.0_en.sh && if [ -f /usr/bin/curl ];then curl -ksSO "$URL" ;else wget --no-check-certificate -O install_7.0_en.sh "$URL";fi;bash install_7.0_en.sh aapanel
+
+	Enter y and press Enter to confirm the installation
+
+	Disable SSL verification command:
+
+		rm -f /www/server/panel/data/ssl.pl && /etc/init.d/bt restart
+
+	After shutdown, execute "bt 14" Check the new panel address
+
+	PS: If you cannot log in to the panel due to SSL installation, please refer to the solution: https://www.90175.com/wenku/txtlist_i119v.html
+
+	Installation environment
+		Nginx 1.18
+		MySQL 5.6
+		Php 7.1
+
+	Insufficient memory - Software Store - System Tools - Install Linux Toolbox - Increase virtual memory
+
+	Install Mango Database
+		sudo apt-get update
+
+		mv /home/ubuntu/mongodb.tar.gz /
+
+		cd /
+		tar -zxvf mongodb.tar.gz
+
+		apt-get install mongodb-org=3.6.12 mongodb-org-server=3.6.12 mongodb-org-shell=3.6.12 mongodb-org-mongos=3.6.12 mongodb-org-tools=3.6.12
+
+		rm -rf /usr/lib/python2.7/dist-packages/OpenSSL
+
+		rm -rf /usr/lib/python2.7/dist-packages/pyOpenSSL-0.15.1.egg-info
+
+		pip install cython six lz4==0.8.2 numpy==1.16.0 xlrd xdot rpdb psutil fabric==1.7.3 pycurl pycrypto M2Crypto==0.36.0 objgraph msgpack-python backports.ssl-match-hostname Markdown toro pymongo pyrasite pyopenssl ThinkingDataSdk==1.4.0
+
+		pip install tornado==4.4.2
+
+		pip install Supervisor==3.3.0
+
+		pip install cryptography==2.6
+
+	3. Close the firewall and open the port
+
+		sudo ufw disable
+
+	Pagoda/aaPanel to add rule "release port": 1:65535
+
+	PS: If you use Tencent Cloud or Alibaba Cloud, remember to open the console port as well
+
+4. Website/Server
+
+	Command line operation
+
+		sudo mv /home/ubuntu/default /etc/nginx/sites-available
+
+	If there is an error above, don't worry about it. It was when Pagoda was not installed before
+
+		sudo mv /home/ubuntu/pokemon_server_test.tar.gz /mnt
+		sudo mv /home/ubuntu/game.tar.gz /www/wwwroot
+		cd /mnt
+		tar -zxvf pokemon_server_test.tar.gz
+		rm pokemon_server_test.tar.gz
+		cd /www/wwwroot
+		tar -zxvf game.tar.gz
+		rm game.tar.gz
+
+	Reload nginx
+		nginx -s reload
+
+	Give permissions
+		chmod 755 -R /mnt
+		chmod 777 -R /www/wwwroot/
+
+	Inside the pagoda
+		Create website 1:
+			ip:81
+			Website setting path /www/wwwroot/game Port 81
+		Create website 2:
+			127.0.0.2:88
+			Website setting path /www/wwwroot/zc Port 88
+
+	Change the database password to: 90175.com (refer https://stackoverflow.com/a/18100189)
+
+	Import database
+		cd /www/wwwroot
+		./sk
+
+---------------------------------------------------------------------
+5. Server and website modification (quick file: /root/changeIp.sh)
+
+	Modify the server Search: 202.189.13.25
+	
+	```sh
+	from=202.189.13.25
+	to=10.10.1.186
+
+	sed -i "s/$from/$to/g" /www/wwwroot/game/pokemon/patch/881/res/version.plist
+
+	sed -i "s/$from/$to/g" /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view
+
+	sed -i "s/$from/$to/g" /www/wwwroot/zc/index.php
+
+	sed -i "s/$from/$to/g" /mnt/pokemon/release/login/conf/dev/serv.json
+
+	sed -i "s/$from/$to/g" /mnt/pokemon/release/login/conf/serv.json
+
+	sed -i "s/$from/$to/g" /mnt/pokemon/release/login/defines.json
+
+	sed -i "s/$from/$to/g" /mnt/pokemon/release/game_defines.py
+
+	sed -i "s/$from/$to/g" /mnt/pokemon/release/payment_defines.py
+	```
+
+	View md5 and get file size
+	
+		md5sum /www/wwwroot/game/pokemon/patch/881/res/version.plist # Copy the output md5 code
+
+		ls -l /www/wwwroot/game/pokemon/patch/881/res/version.plist # Get the file size value. The number after root is 1045 in my case.
+
+	Modify the server file
+
+		/mnt/pokemon/release/login/patch/cn/881.json # Update the md5 code and size of version.plist and save and exit line 3357 or search: (res/version.plist)
+
+	View md5 and get the file size
+
+		md5sum /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view # Copy the output md5 code
+
+		ls -l /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view # Get the file size value
+
+	Modify the server file
+
+		/mnt/pokemon/release/login/patch/cn/881.json (on line 78) # Update the md5 code and size of app.views.login.view and save and exit
+
+	This is the server side, let's take a look at the client
+
+6. Start the game service
+
+	Start the game
+		cd /mnt/pokemon/deploy_dev
+
+		rm supervisor.sock
+
+		supervisord -c supervisord.conf
+
+		supervisorctl start all
+
+		supervisorctl status
+
+	Close the game:
+
+		supervisorctl reload
+
+	Check the service status (if there is any service that has not started, start all again. If crash_platform is always FATAL after multiple starts, please reboot)
+		cd /mnt/pokemon/deploy_dev
+		supervisorctl status
+
+	Some other commands
+		supervisorctl reload Reload configuration
+		supervisorctl start gm_server Start a single service
+
+7. Client modification
+
+	Android, edit \assets\res\version.plis
+	
+	Apple, edit \Payload\MyLuaGame.app\res\version.plist
+
+	Try to start it below
+
+	Registration address:
+	http://IP:88
+
+	You can log in normally.
+
+	Okay. This tutorial ends here.
+
+	Good luck to you. . . .
+
+For the rest, you can study it yourself. . .
+
+PS:
+
+Backstage address
+
+Administrative backstage: http://IP:39981/login
+Account: admin
+Password: qq123456..
+
+Email sending format: {"command": quantity}
+
+Authorized GM backstage:
+http://IP:81/gm/gm.php
+GM code: 90175.com
+
+Player backstage:
+http://IP:81/gm/
+GM code: 90175.com
+
+New version backstage:
+http://IP:81/houtai/gm.php
+
+PS:
+
+Region name
+mnt/pokemon/release/login/conf/serv.json
+
+Announcement
+mnt/pokemon/release/login/conf/cn/notice.json
+
+Game normal startup example
+root@VM-4-17-ubuntu:/mnt/pokemon/deploy_dev# supervisorctl status
+account_db_server RUNNING pid 4443, uptime 0:12:26
+crash_platform_server EXITED Aug 10 07:28 PM
+disable_word_check_server RUNNING pid 4445, uptime 0:12:26
+game_mongodb RUNNING pid 4442, uptime 0:12:26
+game_server RUNNING pid 4448, uptime 0:12:26
+gm_server RUNNING pid 4450, uptime 0:12:26
+login_server RUNNING pid 4451, uptime 0:12:26
+nsqadmin RUNNING pid 4440, uptime 0:12:26
+nsqd RUNNING pid 4439, uptime 0:12:26
+nsqlookupd RUNNING pid 4441, uptime 0:12:26
+payment_server RUNNING pid 4447, uptime 0:12:26
+pvp_server RUNNING pid 4446, uptime 0:12:26
+storage_server RUNNING pid 4444, uptime 0:12:26
+This is normal. . . . .
+
+Editing instructions in the file
+
+1. Edit: Press i to enter edit mode
+2. Return to command mode: Press Esc to return to command mode
+3. In command mode, press :wq!, save and exit
+4. Exit, press :q, exit
+5. Force exit, press :q!, force exit
+6. Save, press :w, save
+7. Save and exit, press :wq, save
+8. Force save and exit, press :wq!, save
+
+Download video related tools:

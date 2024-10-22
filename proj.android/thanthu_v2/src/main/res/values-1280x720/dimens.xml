@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="gg_alert_size">24dp</dimen>
+    <dimen name="gg_dialog_min_width">320dp</dimen>
+    <dimen name="gg_fb_logo_height">30dp</dimen>
+    <dimen name="gg_fb_logo_width">20dp</dimen>
+    <dimen name="gg_google_logo_height">30dp</dimen>
+    <dimen name="gg_google_logo_width">38dp</dimen>
+    <dimen name="gg_layout_value_12">12dp</dimen>
+    <dimen name="gg_layout_value_14">14dp</dimen>
+    <dimen name="gg_layout_value_16">16dp</dimen>
+    <dimen name="gg_layout_value_20">20dp</dimen>
+    <dimen name="gg_layout_value_24">24dp</dimen>
+    <dimen name="gg_layout_value_32">32dp</dimen>
+    <dimen name="gg_layout_value_36">36dp</dimen>
+    <dimen name="gg_layout_value_4">4dp</dimen>
+    <dimen name="gg_layout_value_8">8dp</dimen>
+    <dimen name="gg_logo_width">107dp</dimen>
+    <dimen name="gg_share_image_size">160dp</dimen>
+    <dimen name="gg_text_size_small">10sp</dimen>
+    <dimen name="gg_vk_logo_height">30dp</dimen>
+    <dimen name="gg_vk_logo_width">38dp</dimen>
+</resources>
