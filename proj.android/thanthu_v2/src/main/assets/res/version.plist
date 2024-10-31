@@ -7,26 +7,26 @@
 	<key>git_version</key>
 	<string>175bed51520de09c6020d19bcaecc21834fcd51b</string>
 	<key>loginServer</key>
-	<string>172.20.10.8:16666</string>
+	<string>10.1.230.143:16666</string>
 	<key>loginServer2</key>
-	<string>172.20.10.8:16666</string>
+	<string>10.1.230.143:16666</string>
 	<key>patch</key>
 	<string>880</string>
 	<key>serverUrl</key>
-	<string>http://172.20.10.8:18080/servers</string>
+	<string>http://10.1.230.143:18080/servers</string>
 	<key>versionUrl</key>
-	<string>http://172.20.10.8:18080/version</string>
+	<string>http://10.1.230.143:18080/version</string>
 	<key>noticeUrl</key>
-	<string>http://172.20.10.8:18080/notice</string>
+	<string>http://10.1.230.143:18080/notice</string>
 	<key>reportUrl</key>
-	<string>http://172.20.10.8:1104</string>
+	<string>http://10.1.230.143:1104</string>
 	<key>disableWordCheckUrl</key>
-	<string>http://172.20.10.8:1144/check</string>
+	<string>http://10.1.230.143:1144/check</string>
 	<key>forShenhe</key>
 	<string>false</string>
 	<key>forOBB</key>
 	<string>false</string>
 	<key>feedBackUrl</key>
-	<string>http://172.20.10.8:1104/feedback</string>
+	<string>http://10.1.230.143:1104/feedback</string>
 </dict>
 </plist>

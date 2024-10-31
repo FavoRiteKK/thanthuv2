@@ -175,7 +175,7 @@ Make sure we are in administrator mode ($ is normal permission # is administrato
 		./sk
 
 ---------------------------------------------------------------------
-5. Server and website modification (quick file: /root/changeIp.sh)
+5. Server and website modification (quick file: /home/ubuntu/change_ip_server.sh)
 
 	Modify the server Search: 202.189.13.25
 	
@@ -201,24 +201,12 @@ Make sure we are in administrator mode ($ is normal permission # is administrato
 	```
 
 	View md5 and get file size
-	
-		md5sum /www/wwwroot/game/pokemon/patch/881/res/version.plist # Copy the output md5 code
-
-		ls -l /www/wwwroot/game/pokemon/patch/881/res/version.plist # Get the file size value. The number after root is 1045 in my case.
+		md5sum /www/wwwroot/game/pokemon/patch/881/res/version.plist /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view
+		ls -l /www/wwwroot/game/pokemon/patch/881/res/version.plist /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view
 
 	Modify the server file
 
-		/mnt/pokemon/release/login/patch/cn/881.json # Update the md5 code and size of version.plist and save and exit line 3357 or search: (res/version.plist)
-
-	View md5 and get the file size
-
-		md5sum /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view # Copy the output md5 code
-
-		ls -l /www/wwwroot/game/pokemon/patch/881/src/app.views.login.view # Get the file size value
-
-	Modify the server file
-
-		/mnt/pokemon/release/login/patch/cn/881.json (on line 78) # Update the md5 code and size of app.views.login.view and save and exit
+		/mnt/pokemon/release/login/patch/cn/881.json
 
 	This is the server side, let's take a look at the client
 

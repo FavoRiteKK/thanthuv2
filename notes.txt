@@ -1,5 +1,5 @@
-Today ip: 192.168.1.10
-    ssh -l ubuntu -p 22 192.168.1.10 (password: q1)
+Today ip: 10.1.230.143
+    ssh -l ubuntu -p 22 10.1.230.143 (password: q1)
 
 sudo su password: q1
 quick file: /root/changeIp.sh

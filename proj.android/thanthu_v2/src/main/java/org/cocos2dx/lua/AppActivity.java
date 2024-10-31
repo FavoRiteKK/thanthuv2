@@ -26,7 +26,6 @@
  ****************************************************************************/
 package org.cocos2dx.lua;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 
