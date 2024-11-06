@@ -144,6 +144,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #if CC_64BITS
     FileUtils::getInstance()->addSearchPath("src/64bit");
 #endif
+    FileUtils::getInstance()->addSearchPath("cocos");
     FileUtils::getInstance()->addSearchPath("updater");
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
@@ -179,3 +180,4 @@ void AppDelegate::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
 }
+
