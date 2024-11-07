@@ -109,7 +109,8 @@ static void loadRepoMappingFile() {
 //        CCLOG("Type of member %s is %s\n",
 //              m.name.GetString(), m.value.GetObject()["mapping"].GetString());
         std::string key = m.name.GetString();
-
+        //replace dot to slash for easier map
+        std::replace(key.begin(), key.end(), '.', '/');
         filenameLookupDict.emplace(
                 key, m.value.GetObject()["mapping"].GetString()
         );
@@ -180,4 +181,3 @@ void AppDelegate::applicationWillEnterForeground() {
     SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
 }
-

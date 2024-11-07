@@ -767,73 +767,37 @@ void FileUtils::writeValueVectorToFile(ValueVector vecData, const std::string& f
     }, std::move(callback), std::move(vecData));
 }
 
-std::string FileUtils::getNewFilename(const std::string &ifname) const
+std::string FileUtils::getNewFilename(const std::string &filename) const
 {
-    std::string filename = ifname;
-    std::replace(filename.begin(), filename.end(), '/', '.');
-
-    std::string newFileName;
+    std::string newFileName = filename;
 
     // in Lookup Filename dictionary ?
-    auto iter = _filenameLookupDict.find(ifname);
+    auto iter = _filenameLookupDict.find(filename);
 
     if (iter == _filenameLookupDict.end())
     {
         //idk
-        CCLOG("idk [getNewFilename] %s not found normally", ifname.c_str());
-        std::string fn = ifname;
+        CCLOG("idk [getNewFilename] %s not found normally", filename.c_str());
         std::string query;
         ValueMap::const_iterator foundIt;
 
         for (const auto& searchIt : _searchPathArray)
         {
-            query = searchIt.substr(7) + filename;
-            CCLOG("idk [getNewFilename] try append searchIt (2): %s", query.c_str());
+            query = searchIt.substr(7) + filename;  //remove 'assets/' prefix
+            CCLOG("idk [getNewFilename] try append searchIt: %s", query.c_str());
             foundIt = _filenameLookupDict.find(query);
 
             if (foundIt != _filenameLookupDict.end())
             {
                 CCLOG("idk [getNewFilename] ... and %s found", query.c_str());
-                fn = foundIt->second.asString();
+                newFileName = foundIt->second.asString();
                 break;
             }
             else
             {
                 CCLOGERROR("idk error: Cannot find file %s in repo.mapping", query.c_str());
             }
-
-//            query = searchIt.substr(7) + ifname;
-//            CCLOG("idk [getNewFilename] try append searchIt (1): %s", query.c_str());
-//            foundIt = _filenameLookupDict.find(query);  //find with searchIt removed 'assets/' prefix
-//
-//            if (foundIt != _filenameLookupDict.end())
-//            {
-//                CCLOG("idk [getNewFilename] ... and %s found", query.c_str());
-//                fn = foundIt->second.asString();
-//                break;
-//            }
-//            else
-//            {
-//                CCLOGERROR("idk error: Cannot find file %s in repo.mapping, retry", query.c_str());
-//
-//                query = searchIt.substr(7) + filename;
-//                CCLOG("idk [getNewFilename] try append searchIt (2): %s", query.c_str());
-//                foundIt = _filenameLookupDict.find(query);
-//
-//                if (foundIt != _filenameLookupDict.end())
-//                {
-//                    CCLOG("idk [getNewFilename] ... and %s found", query.c_str());
-//                    fn = foundIt->second.asString();
-//                    break;
-//                }
-//                else
-//                {
-//                    CCLOGERROR("idk error: Cannot find file %s in repo.mapping", query.c_str());
-//                }
-//            }
         }
-
-        newFileName = fn;
     }
     else
     {
@@ -1616,4 +1580,3 @@ void FileUtils::valueVectorCompact(ValueVector& /*valueVector*/)
 }
 
 NS_CC_END
-

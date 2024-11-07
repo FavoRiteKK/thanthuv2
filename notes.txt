@@ -27,7 +27,7 @@ frida
 
 start: frida -U Gadget
 trace: frida-trace -U -i _ZN10cocostudio9GUIReader18widgetFromJsonFileEPKc Gadget
-	frida-trace -U -i "*FileUtils*" -i "AAsset_read" -i "AAsset_getLength" -i "*ResizableBufferAdapter*" -i "lua_cocos2dx_ui_Widget_clone__Formidable" -i "lua_cocos2dx_ui_RichText_isAnchorTextDelEnabled__Profit" -i "LZ4_decompress_safe" -i "_Z16tj_xxtea_decryptPhjS_jPj" Gadget
+	frida-trace -U -i "*FileUtils*" -i "AAsset_read" -i "AAsset_getLength" -i "*ResizableBufferAdapter*" -i "_ZNK7cocos2d9FileUtils49lua_cocos2dx_ui_Widget_getWorldPosition__VerticalEPNS_15ResizableBufferE." -i "lua_cocos2dx_ui_RichText_isAnchorTextDelEnabled__Profit" -i "LZ4_decompress_safe" -i "_Z16tj_xxtea_decryptPhjS_jPj" Gadget
 
 ===========================================================
 cocos
