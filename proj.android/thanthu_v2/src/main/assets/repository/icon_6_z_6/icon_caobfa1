@@ -341,9 +341,6 @@ local function createLayer()
 	-- spine
 	local loginSpine = "login/login.skel"
 
-	-- local str = cc.FileUtils:getInstance():getStringFromFile("src/app.views.city.pvp.online_fight.view")
-	-- PrintHex(str)
-
 	local isOpen, res = isDisplayReplaceHuodong("loginSpine")
 	if isOpen then
 		loginSpine = res
@@ -368,10 +365,9 @@ local function createLayer()
 	local placard = left:getChildByName("btnNotice"):setTouchEnabled(true)
 	placard:onClick(function ()
 		if notice == nil then
-		    -- sp.SkeletonAnimation:create("koudai_beijing/cloud.skel", "koudai_beijing/cloud.atlas")
-		    local str = cc.FileUtils:getInstance():getStringFromFile("koudai_beijing/cloud.atlas")
-		    --local str = cc.FileUtils:getInstance():getStringFromFile("config/portrait/simple/img_71_dsh@.png")
-            --printInfo('idk %s, len: %d', str, string.len(str))
+		    --idk
+		    local str = cc.FileUtils:getInstance():getStringFromFile("login/login.atlas")
+            --printInfo('idk "%s", len: %d', str, string.len(str))
             --ccs.GUIReader:getInstance():widgetFromJsonFile("common_prompt_box.json")
 		    --showDialog({ content = 'Hello there!' })
 		else

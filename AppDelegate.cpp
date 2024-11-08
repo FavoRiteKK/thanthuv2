@@ -110,7 +110,11 @@ static void loadRepoMappingFile() {
 //              m.name.GetString(), m.value.GetObject()["mapping"].GetString());
         std::string key = m.name.GetString();
         //replace dot to slash for easier map
-        std::replace(key.begin(), key.end(), '.', '/');
+        if (key.find("res/") == std::string::npos)
+        {
+            std::replace(key.begin(), key.end(), '.', '/');
+        }
+
         filenameLookupDict.emplace(
                 key, m.value.GetObject()["mapping"].GetString()
         );
@@ -149,6 +153,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("updater");
     FileUtils::getInstance()->addSearchPath("src");
     FileUtils::getInstance()->addSearchPath("res");
+    FileUtils::getInstance()->addSearchPath("res/uijson");
+    FileUtils::getInstance()->addSearchPath("res/spine");
 
     // run main
     if (engine->executeScriptFile("main")) {

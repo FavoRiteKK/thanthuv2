@@ -45,13 +45,16 @@ getStringFromFile can be seen fully in tianji_dug.log file in external storage.
 dcrypted content in json file can be copied to mapped file, then run ok
 => it seems it check if the file has "tj***" at the beginning to decide to decode or not.
 
-loadFileMappingFromFile
-regex
-	c.a.a.a.l[^.;\n]
+wanted:
+  "res/spine/login/login.skel"
+  "img/scene_board_bottom.png"
+  "img/scene_board_right.png"
+  "login/qq_bg.png"
+  "login/img_bg.jpg"
+  "login_updater.json"
+  "loading/loading_pikaqiu.skel"
 	
-	Unreachable blocks removed: 1, instructions: 1
-	
-	local _aes = require 'aes'
+local _aes = require 'aes'
 local AESKeyHex = _aes.key128Hex
 
 local InitPwdAES = 'tjshuma081610888'
