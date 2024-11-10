@@ -21,12 +21,15 @@
    */
   onEnter(log, args, state) {
     log('getWorldPosition ');
-	// this.x = args[0];
-	// this.y = args[1];
-	// this.z = args[2];
+	this.x = args[0];
+	this.y = args[1];
+	this.z = args[2];
 	this.w = args[3];
-	// log('	w: "' + this.w.readCString() + '"');
 	state.fileName = this.w;
+	log('x: ' + this.x);
+	log('y: ' + this.y);
+	log('z: ' + this.z);
+	log('w: ' + this.w);
   },
 
   /**
@@ -42,11 +45,12 @@
   onLeave(log, retval, state) {
 	  try {
 		// log('	x: "' + this.x + '"');
-		// log('	y: "' + this.y + ' | ' + this.y.readCString(6) + '"');
-		// log('	z: "' + this.z + /* ' | ' + this.z.readCString() + */ '"');
+		// log('	y: "' + this.y.readCString() + '"');
+		// log('	z: "' + this.z + ' | ' + this.z.readCString() + '"');
+		log('	w: "' + this.w.readCString() + '"');
 		// log(hexdump(this.y, {
 			  // offset: 0,
-			  // length: 100,
+			  // length: 50,
 			  // header: false,
 			  // ansi: false
 		  // }));

@@ -155,6 +155,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
     FileUtils::getInstance()->addSearchPath("res");
     FileUtils::getInstance()->addSearchPath("res/uijson");
     FileUtils::getInstance()->addSearchPath("res/spine");
+    FileUtils::getInstance()->addSearchPath("res/resources");
+    FileUtils::getInstance()->addSearchPath("res/sound");
 
     // run main
     if (engine->executeScriptFile("main")) {

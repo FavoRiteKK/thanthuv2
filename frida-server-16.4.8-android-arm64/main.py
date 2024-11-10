@@ -7,7 +7,7 @@ import binascii
 import base64
 
 def savefile(path, data):
-    print(path)
+    # print(path)
     if not os.path.exists(os.path.dirname(path)):
         try:
             os.makedirs(os.path.dirname(path))
@@ -18,7 +18,7 @@ def savefile(path, data):
 
 def on_message(message, data):
     if 'payload' in message and message['type'] == 'send':
-        print(f'message: {message}')
+        print(f'    message: {message}')
         payload = message['payload']
         origin_path = payload['path']
         # if 'dump' in payload:
@@ -29,18 +29,20 @@ def on_message(message, data):
             # savefile(origin_path,dump.encode('utf-8'))
             # return
         if message['type'] == 'send':
-            print(f'data: {data[:100]}')
+            # print(f'data: {data[:100]}')
             savefile(origin_path, data)
         else:
-            print(f'message: {message}')
+            # print(f'message: {message}')
+            pass
 
 device = frida.get_usb_device()
 pid = 'Gadget'
 device.resume(pid)
 time.sleep(1)
 session = device.attach(pid)
-with open("dumpPng.js") as f:
-# with open("dumpSpine.js") as f:
+# with open("dumpPng.js") as f:
+with open("dumpSpine.js") as f:
+# with open("dumpWidgetFromJson.js") as f:
     script = session.create_script(f.read())
 script.on("message", on_message)
 script.load()

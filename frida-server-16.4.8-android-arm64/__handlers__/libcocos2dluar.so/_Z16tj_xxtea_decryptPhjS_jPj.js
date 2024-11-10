@@ -24,7 +24,8 @@
 	this.x = args[0];
 	this.y = args[1];
 	this.z = args[2];
-	this.w = args[3];
+	this.t = args[3];
+	this.u = args[4];
   },
 
   /**
@@ -39,11 +40,12 @@
    */
   onLeave(log, retval, state) {
 	  try {
-		log('	x: "' + this.x + ' | ' + this.x.readCString(20) + '"');
+		log('	x: "' + this.x + ' | ' /* + this.x.readCString(20) */ + '"');
 		log('	y: "' + this.y /* + ' | ' + this.y.readCString(6) */ + '"');
-		log('	z: "' + this.z + ' | ' + this.z.readCString(20) + '"');
-		log('	w: "' + this.w/* .readCString() */ + '"');
-		log('	retval: "' + retval + '"' + ' | ' + retval.readCString(20));
+		log('	z: "' + this.z + ' | ' /* + this.z.readCString(20) */ + '"');
+		log('	t: "' + this.t/* .readCString() */ + '"');
+		log('	u: "' + this.u/* .readCString() */ + '"');
+		log('	retval: "' + retval + '"' + ' | ' /* + retval.readCString(20) */);
 	} catch (err) {
 		log('err: ' + err);
 	}

@@ -20,12 +20,17 @@
    * use "this" which is an object for keeping state local to an invocation.
    */
   onEnter(log, args, state) {
-    log('cc_LZ4_decompress_safe()');
-	this.x = args[0];
-	this.y = args[1];
-	this.z = args[2];
-	this.w = args[3];
-	log('	fileName: "' + state.fileName.readCString() + '"');
+    try {
+		log('cc_LZ4_decompress_safe()');
+		this.x = args[0];
+		this.y = args[1];
+		this.z = args[2];
+		this.w = args[3];
+		log('	0: ' + this.x.readCString(20) + ', 1: ' + this.y.readCString(20) + ', 2: ' + this.z + ', 3: ' + this.w);
+		log('	fileName: "' + state.fileName.readCString() + '"');
+	} catch (err) {
+		log('err: ' + err);
+	}
   },
 
   /**
@@ -41,11 +46,11 @@
   onLeave(log, retval, state) {
 	  try {
 		  // log('	x: "' + this.x + ' | ' + this.x.readCString(100) + '"');
-		  log('	y: "' + this.y + ' | ' + this.y.readCString(100) + '"');
+		  log('	y: "' + this.y + ' | ' + this.y.readCString(20) + '"');
 		  // log('	z: "' + parseInt(this.z, 16) + /* ' | ' + this.z.readCString() + */ '"');
 		  // log('	w: "' + parseInt(this.w, 16)/* .readCString() */ + '"');
 		  log('	retval: ' + parseInt(retval));
-		  send({ path: "C:\\LamGame\\frida-server-16.4.8-android-arm64\\tjout.png", dump: "hello" }/* , code */);
+		  // send({ path: "C:\\LamGame\\frida-server-16.4.8-android-arm64\\tjout.png", dump: "hello" }/* , code */);
 	  } catch (err) {
 		  log('err: ' + err);
 	  }
