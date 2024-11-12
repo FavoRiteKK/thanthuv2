@@ -21,15 +21,22 @@
    */
   onEnter(log, args, state) {
     log('getWorldPosition ');
-	this.x = args[0];
-	this.y = args[1];
-	this.z = args[2];
-	this.w = args[3];
-	state.fileName = this.w;
-	log('x: ' + this.x);
-	log('y: ' + this.y);
-	log('z: ' + this.z);
-	log('w: ' + this.w);
+    this.x = args[0];
+    this.y = args[1];
+    this.z = args[2];
+    this.w = args[3];
+    this.t = args[4];
+    this.u = args[5];
+    this.v = args[6];
+
+    state.fileName = this.w;
+    log('x: ' + this.x);
+    log('y: ' + this.y.readCString());
+    log('z: ' + this.z.readCString());
+    log('w: ' + this.w.readCString());
+    log('t: ' + this.t);
+    log('u: ' + this.u.readCString());
+    log('v: ' + this.v);
   },
 
   /**
@@ -44,7 +51,6 @@
    */
   onLeave(log, retval, state) {
 	  try {
-		// log('	x: "' + this.x + '"');
 		// log('	y: "' + this.y.readCString() + '"');
 		// log('	z: "' + this.z + ' | ' + this.z.readCString() + '"');
 		log('	w: "' + this.w.readCString() + '"');

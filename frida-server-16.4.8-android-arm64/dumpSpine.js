@@ -16,7 +16,7 @@ function fn() {
 		Interceptor.attach(nptr1, {
             onEnter: function(args) {
                 // console.log('getWorldPosition ');
-                this.w = args[3];
+                this.w = args[2];
                 fileName = this.w.readCString();
             },
             onLeave: function(retval) {
@@ -39,7 +39,7 @@ function fn() {
 					try {
 						var code = retval.readByteArray(this.u.readInt()); // file content
 						// console.log('code: ' + code);
-						 send({ path: "C:\\Users\\84975\\Workspace\\LamGame\\" + fileName /* , dump: code */ }, code);
+						 send({ path: "/home/khiemnv3/Downloads/LamGame/MyLuaGame/frameworks/thanthuv2/frida-server-16.4.8-android-arm64/" + fileName /* , dump: code */ }, code);
 					} catch (err) {
 						console.log('err: ' + err);
 					}
@@ -63,7 +63,7 @@ function fn() {
                     // console.log('	retval: ' + parseInt(retval));
                     // console.log('	y: "' + this.y + ' | ' + this.y.readByteArray(parseInt(retval)) + '"');
 					var code = this.y.readByteArray(parseInt(retval)); // file content
-					send({ path: "C:\\Users\\84975\\Workspace\\LamGame\\" + fileName /* , dump: "hello" */ }, code);
+					send({ path: "/home/khiemnv3/Downloads/LamGame/MyLuaGame/frameworks/thanthuv2/frida-server-16.4.8-android-arm64/" + fileName /* , dump: "hello" */ }, code);
                 } catch (err) {
                     console.log('err: ' + err);
                 }
