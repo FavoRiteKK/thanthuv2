@@ -308,22 +308,7 @@ local function read_file(name)
    end
 end
 
-local function PrintHex(data)
-    printInfo('idk starting "%s": ', data)
-    -- local cnt = 1
-    -- for i = 1, #data do
-    --     local chr = string.sub(data, i, i)
-    --     print(string.format("%02x", string.byte(chr)) .. " ")
-    --     cnt = cnt + 1
-    --     if cnt == 100 then
-    --         break
-    --     end
-    -- end
-end
-
 local function createLayer()
-    -- printInfo('idk file: %s', cc.FileUtils:getInstance():fullPathForFilename("login.json"))
-
 	local layer = cc.Layer:create()
 	local loginWidget = ccs.GUIReader:getInstance():widgetFromJsonFile("login.json")
 	if CC_DESIGN_RESOLUTION.autoscale == "FIXED_HEIGHT" then
@@ -366,8 +351,8 @@ local function createLayer()
 	placard:onClick(function ()
 		if notice == nil then
 		    --idk
-		    local str = cc.FileUtils:getInstance():getStringFromFile("login/login.atlas")
-            --printInfo('idk "%s", len: %d', str, string.len(str))
+		    local str = cc.FileUtils:getInstance():getStringFromFile("src/main")
+            printInfo('idk debug "%s", len: %d', str, string.len(str))
             --ccs.GUIReader:getInstance():widgetFromJsonFile("common_prompt_box.json")
 		    --showDialog({ content = 'Hello there!' })
 		else
@@ -626,7 +611,7 @@ local function main()
 	-- if LOCAL_LANGUAGE == "en" or LOCAL_LANGUAGE == "kr" and device.platform ~= "windows" then
 	-- 	checkForShenhe(shenHeFunc, notShenheFunc)
 	-- else
-	-- 	notShenheFunc()
+	notShenheFunc()
 	-- end
 end
 

@@ -16,9 +16,19 @@ def savefile(path, data):
     with codecs.open(path, 'wb') as f:
         f.write(data)
 
+device = frida.get_usb_device()
+pid = 'Gadget'
+device.resume(pid)
+time.sleep(1)
+session = device.attach(pid)
+# with open("dumpPng.js") as f:
+with open("dumpSpine.js") as f:
+# with open("dumpWidgetFromJson.js") as f:
+    script = session.create_script(f.read())
+
 def on_message(message, data):
     if 'payload' in message and message['type'] == 'send':
-        print(f'    message: {message}')
+        print(f'$ message: {message}')
         payload = message['payload']
         origin_path = payload['path']
         # if 'dump' in payload:
@@ -30,20 +40,16 @@ def on_message(message, data):
             # return
         if message['type'] == 'send':
             # print(f'data: {data[:100]}')
-            savefile(origin_path, data)
+            threadId = payload['dump']
+            if not os.path.exists(origin_path):
+                savefile(origin_path, data)
+                script.post({'type': threadId, 'payload': True})
+            else:
+                script.post({'type': threadId, 'payload': False})
         else:
             # print(f'message: {message}')
             pass
 
-device = frida.get_usb_device()
-pid = 'Gadget'
-device.resume(pid)
-time.sleep(1)
-session = device.attach(pid)
-# with open("dumpPng.js") as f:
-with open("dumpSpine.js") as f:
-# with open("dumpWidgetFromJson.js") as f:
-    script = session.create_script(f.read())
 script.on("message", on_message)
 script.load()
 sys.stdin.read()
